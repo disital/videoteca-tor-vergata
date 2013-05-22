@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-mag-2013 10.57.57 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojo.Rented" table="rented" catalog="mydb">
+        <id name="idrented" type="java.lang.Integer">
+            <column name="idrented" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="pojo.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <many-to-one name="film" class="pojo.Film" fetch="select">
+            <column name="film_idfilm" not-null="true" unique="true" />
+        </many-to-one>
+        <property name="dayOfRent" type="date">
+            <column name="day_of_rent" length="10" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
