@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 21-mag-2013 10.57.57 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojo.Film" table="film" catalog="mydb">
+        <id name="idfilm" type="java.lang.Integer">
+            <column name="idfilm" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="pojo.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="titolo" type="string">
+            <column name="titolo" length="45" not-null="true" unique="true" />
+        </property>
+        <property name="genere" type="string">
+            <column name="genere" length="45" />
+        </property>
+        <property name="link" type="string">
+            <column name="link" length="45" />
+        </property>
+        <property name="trama" type="string">
+            <column name="trama" length="300" />
+        </property>
+        <property name="image" type="binary">
+            <column name="image" />
+        </property>
+        <property name="imdbUrl" type="string">
+            <column name="imdb_url" length="45" />
+        </property>
+        <property name="rented" type="java.lang.Boolean">
+            <column name="rented" />
+        </property>
+        <set name="renteds" inverse="true">
+            <key>
+                <column name="film_idfilm" not-null="true" unique="true" />
+            </key>
+            <one-to-many class="pojo.Rented" />
+        </set>
+    </class>
+</hibernate-mapping>
