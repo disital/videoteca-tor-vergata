@@ -55,6 +55,11 @@ public class HomeController {
 
             filmService.addMovie(currentUser, titolo, currentUser.getIduser());
 
+            /* Chiamo il JsonParser per recuperare il json da imdbapi
+            * @url .         Url di imdbapi più titolo
+            * @plot          Trama del film
+            * @poster_url    Locandina del film
+            */
             try {
                 String url = "http://imdbapi.org/?title=" + titolo;
                 JSONObject json = JsonParser.readJsonFromUrl(url);
@@ -64,6 +69,9 @@ public class HomeController {
                 URL img_url = new URL(poster_url);
 
                 System.out.println("URL DELL'IMMAGINE :" + img_url);
+                
+                /* Scarico l'immagine e la salvo in locale */
+                
                 BufferedImage image = ImageIO.read(img_url);
                 File local_file = new File("C:\\Users\\lorenzo\\Desktop\\Facebook Image\\" + titolo + ".jpg");
                 ImageIO.write(image, "jpg", local_file);
