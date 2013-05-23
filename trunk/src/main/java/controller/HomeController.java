@@ -1,7 +1,12 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Spring Controller per la Home
+ * ----------------------------
+ * @addMovie
+ * @myMovie
+ * @home
+ * @search
  */
+ 
 package controller;
 
 import java.awt.image.BufferedImage;
@@ -29,7 +34,7 @@ import service.SearchService;
 
 /**
  *
- * @author lorenzo
+ * @author Lorenzo - disital@gmail.com
  */
 @Controller
 public class HomeController {
