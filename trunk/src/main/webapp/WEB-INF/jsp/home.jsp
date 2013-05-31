@@ -124,7 +124,7 @@
                         <p><c:out value="${movie.image}"></c:out></p>
                         <p><c:out value="${movie.idfilm}"></c:out></p>
                         <p><a class="btn" href="rent/${movie.idfilm}.htm">Noleggia &raquo;</a></p>
-                        <p><a class="btn" data-toggle="modal" href="/MovieDetailModal/${movie.idfilm}">View details &raquo;</a></p>
+                        <p><a class="btn" data-toggle="modal" href="MovieDetailModal/${movie.idfilm}">View details &raquo;</a></p>
                     </div>
                 </c:forEach>
             </div>  
@@ -136,7 +136,7 @@
             </footer>
 
         </div> <!-- /container -->
-<!--        <div id="MovieDetailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">-->
+        <div id="MovieDetailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                 <h3 id="ModalLabel">Movie Detail</h3>
@@ -160,7 +160,7 @@
                 <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
             </div>
         </form>
-<!--    </div>-->
+    </div>
     <div id="addMovieModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>

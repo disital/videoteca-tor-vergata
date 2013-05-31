@@ -73,7 +73,7 @@ public class HomeController {
                 /* Scarico l'immagine e la salvo in locale */
                 
                 BufferedImage image = ImageIO.read(img_url);
-                File local_file = new File("C:\\Users\\lorenzo\\Desktop\\Facebook Image\\" + titolo + ".jpg");
+                File local_file = new File("C:\\Users\\lorenzo\\Desktop\\Immagini\\" + titolo + ".jpg");
                 ImageIO.write(image, "jpg", local_file);
 
                 FileInputStream fileInputStream = new FileInputStream(local_file);
@@ -133,7 +133,7 @@ public class HomeController {
         System.out.println("SIZE DI LISTMOVIE HOMEPAGE : " + listMovie.size());
         request.getSession().setAttribute("homeMovie", listMovie);
         response.setContentType("image/jpg");
-        System.out.println("BLOOOOOOOOOOOB : " + listMovie.get(8).getImage());
+     //  System.out.println("BLOOOOOOOOOOOB : " + listMovie.get(8).getImage());
 
         return new ModelAndView("home");
     }
