@@ -5,21 +5,21 @@
 <html lang="en">
 
     <script type="text/javascript">
-    $(function() {
-      $('[data-toggle="modal"]').click(function(e) {
-        e.preventDefault();
-        var href = $(this).attr('href');
-        if (href.indexOf('#') == 0) {
-          $(href).modal('open');
-        } else {
-        $.get(href, function(data) {
-          $('<div class="modal">' + data + '</div>').modal();
+        $(function() {
+            $('[data-toggle="modal"]').click(function(e) {
+                e.preventDefault();
+                var href = $(this).attr('href');
+                if (href.indexOf('#') == 0) {
+                    $(href).modal('open');
+                } else {
+                    $.get(href, function(data) {
+                        $('<div class="modal">' + data + '</div>').modal();
+                    });
+                }
+            });
         });
-        }
-      });
-    });
-</script>
-    
+    </script>
+
     <head>
         <meta charset="utf-8">
         <title>MovieCatalog</title>
@@ -121,8 +121,7 @@
                     <div class="span4">
                         <h2><c:out value="${movie.titolo}"></c:out></h2>
                         <p><c:out value="${movie.trama}"></c:out></p>
-                        <p><c:out value="${movie.image}"></c:out></p>
-                        <p><c:out value="${movie.idfilm}"></c:out></p>
+                        <p><img src="./resources/img/${movie.titolo}.jpg" alt=""></p>
                         <p><a class="btn" href="rent/${movie.idfilm}.htm">Noleggia &raquo;</a></p>
                         <p><a class="btn" data-toggle="modal" href="MovieDetailModal/${movie.idfilm}">View details &raquo;</a></p>
                     </div>
@@ -142,11 +141,11 @@
                 <h3 id="ModalLabel">Movie Detail</h3>
             </div>
             <div class="modal-body container">
-                
+
                 <div class="row">
-                   
-                        <div class="span4">
-                            <h2><c:out value="${movie.titolo}"></c:out></h2>
+
+                    <div class="span4">
+                        <h2><c:out value="${movie.titolo}"></c:out></h2>
                         <p><c:out value="${movie.trama}"></c:out></p>
                         <p><c:out value="${movie.link}"></c:out></p>
                         <p><c:out value="${movie.genere}"></c:out></p>
