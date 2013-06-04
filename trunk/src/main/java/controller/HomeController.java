@@ -71,9 +71,9 @@ public class HomeController {
                 System.out.println("URL DELL'IMMAGINE :" + img_url);
                 
                 /* Scarico l'immagine e la salvo in locale */
-                
+
                 BufferedImage image = ImageIO.read(img_url);
-                File local_file = new File("C:\\Users\\lorenzo\\Desktop\\Immagini\\" + titolo + ".jpg");
+                File local_file = new File("C:\\Users\\Lorenzo\\Desktop\\Videoteca\\trunk\\src\\main\\webapp\\resources\\img\\" + titolo + ".jpg");
                 ImageIO.write(image, "jpg", local_file);
 
                 FileInputStream fileInputStream = new FileInputStream(local_file);
@@ -88,6 +88,9 @@ public class HomeController {
 
                 byte[] bytes = bos.toByteArray();
 
+//                String titolo_ = titolo.replaceAll("\\s","");
+//                System.out.println("TITOLO DEL CAZZO SENZA SPAZI : " +titolo_);
+                
                 filmService.writeMovieDetails(titolo, bytes, local_file, plot, imdb_url);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -126,7 +129,7 @@ public class HomeController {
     public ModelAndView home(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Film> listMovie;
         int startID = 1;
-        int endID = 12;
+        int endID = 100;
         /*Pubblico uan decina di titoli compresi tra 1<>12 */
         listMovie = filmService.getFilmTitles(startID, endID);
 

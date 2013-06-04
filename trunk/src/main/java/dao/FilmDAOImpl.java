@@ -67,8 +67,10 @@ public class FilmDAOImpl implements FilmDAO {
 
         film = new Film();
         film.setImage(poster_byte);
+//        String titolo_ = titolo.replaceAll("\\s","");
+//        System.out.println("TITOLO PRIMA DELLA QUERY : " + titolo);
         sessionFactory.getCurrentSession().createSQLQuery("update film SET image = '" + poster_byte + ""
-                + "' , trama = '" + plot + "' , imdb_url = '" + imdb_url + "' where film.titolo= '" + titolo + "'")
+                + "' , trama = '" + plot.replaceAll("'", "''") + "' , imdb_url = '" + imdb_url + "' where film.titolo = '" + titolo.replaceAll("'", "''") + "'")
                 .executeUpdate();
     }
 
