@@ -4,22 +4,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <script type="text/javascript">
-        $(function() {
-            $('[data-toggle="modal"]').click(function(e) {
-                e.preventDefault();
-                var href = $(this).attr('href');
-                if (href.indexOf('#') == 0) {
-                    $(href).modal('open');
-                } else {
-                    $.get(href, function(data) {
-                        $('<div class="modal">' + data + '</div>').modal();
-                    });
-                }
-            });
-        });
-    </script>
-
     <head>
         <meta charset="utf-8">
         <title>MovieCatalog</title>
@@ -29,18 +13,15 @@
 
         <!-- Le styles -->
         <link href="./resources/css/bootstrap.css" rel="stylesheet">
+        <link href="./resources/css/custom.css" rel="stylesheet">
+        <link href="./resources/css/bootstrap-responsive.css" rel="stylesheet">
         <style type="text/css">
             body {
                 padding-top: 60px;
                 padding-bottom: 40px;
             }
-        </style>
-        <link href="./resources/css/bootstrap-responsive.css" rel="stylesheet">
 
-        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-          <script src="../assets/js/html5shiv.js"></script>
-        <![endif]-->
+        </style>
 
         <!-- Fav and touch icons -->
         <!--        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
@@ -65,7 +46,7 @@
                         <ul class="nav">
                             <li class="active"><a href="index.htm">Home</a></li>
                             <li><a href="#about">About</a></li>
-                            <li><a href="#contact">Contact</a></li>
+                            <li><a data-toggle="modal" href="#webpageDialog">Contact</a></li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Manage <b class="caret"></b></a>
                                 <ul class="dropdown-menu" >
@@ -108,12 +89,13 @@
         <div class="container">
 
             <!-- Main showlet displaying info about -->
-            <div class="hero-unit">
+            <div class="learn">
                 <h1>MovieCatalog , a new idea of catalog!</h1>
                 <p>This is a template for blablablablabla .</p>
                 <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
             </div>
-
+        </div>
+        <div class="container hero-unit">
             <!-- Example row of columns -->
             <jsp:useBean id="homeMovie" scope="session" type="java.util.List"></jsp:useBean>
                 <div class="row">
@@ -122,44 +104,52 @@
                         <h2><c:out value="${movie.titolo}"></c:out></h2>
                         <p><c:out value="${movie.trama}"></c:out></p>
                         <p><img src="./resources/img/${movie.titolo}.jpg" alt=""></p>
-                        <p><a class="btn" href="rent/${movie.idfilm}.htm">Noleggia &raquo;</a></p>
-                        <p><a class="btn" data-toggle="modal" href="MovieDetailModal/${movie.idfilm}">View details &raquo;</a></p>
+                        <p><a class="btn btn-primary btn-small" href="rent/${movie.idfilm}.htm">Noleggia &raquo;</a></p>
+                        <p><a class="btn btn-primary btn-large" data-toggle="modal" data-target="#MovieDetailModal" >View details &raquo;</a></p>
                     </div>
                 </c:forEach>
             </div>  
+        </div>
+        <hr>
 
-            <hr>
+        <footer>
+            <p>&copy; disital@gmail.com - 2013</p>
+        </footer>
 
-            <footer>
-                <p>&copy; disital@gmail.com - 2013</p>
-            </footer>
 
-        </div> <!-- /container -->
-        <div id="MovieDetailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    </div>
+    <!-- /container -->
+    <div class="divWebpageDialog">
+        <div id="webpageDialog" class="modal hide fade">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 id="ModalLabel">Movie Detail</h3>
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 id="prompt">Presentation preview</h3>
             </div>
-            <div class="modal-body container">
-
-                <div class="row">
-
-                    <div class="span4">
-                        <h2><c:out value="${movie.titolo}"></c:out></h2>
-                        <p><c:out value="${movie.trama}"></c:out></p>
-                        <p><c:out value="${movie.link}"></c:out></p>
-                        <p><c:out value="${movie.genere}"></c:out></p>
-                        <p><c:out value="${movie.rented}"></c:out></p>
-                        <p><a class="btn" href="rent/${movie.idfilm}.htm">Noleggia &raquo;</a></p>
-                    </div>
-
-                </div>
+            <div class="modal-body">
+                <iframe src="http://localhost/VideotecaPHP/index.php" frameborder="0"></iframe>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+                <a href="#" class="btn btn-primary" onclick="okWebpageDialog()">OK</a>
             </div>
-        </form>
+        </div>
     </div>
+    <div id="MovieDetailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3 id="ModalLabel">Movie Detail</h3>
+        </div>
+        <div class="modal-body container">
+
+            <div class="row">
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
+
     <div id="addMovieModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
@@ -176,10 +166,11 @@
         </div>
         <div class="modal-footer">
             <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <input type="submit" value="Add" class="btn btn-primary"></html:submit>
+            <input type="submit" value="Add" class="btn btn-primary">
         </div>
     </form>
 </div>
+</body>
 <!-- Le javascript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
@@ -196,6 +187,8 @@
 <script src="./resources/js/bootstrap-collapse.js"></script>
 <script src="./resources/js/bootstrap-carousel.js"></script>
 <script src="./resources/js/bootstrap-typeahead.js"></script>
+<script src="./resources/js/contact.js"></script>    <!-- JS per la gestione dei miei contatti -->
+<script src="./resources/js/html5shiv.js"></script>  <!-- Plugin per html5 -->
 
-</body>
+
 </html>

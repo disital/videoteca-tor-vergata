@@ -5,9 +5,12 @@
 package service;
 
 /**
- *
+ *  Classe non utilizzata..
  * @author lorenzo
  */
+
+
+
 import java.util.List;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import pojo.User;

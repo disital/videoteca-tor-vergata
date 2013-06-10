@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.List;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +54,7 @@ public class HomeController {
             /* Recupero l'utente in sessione per operazioni */
             User currentUser = (User) request.getSession().getAttribute("user");
 
+            titolo.toUpperCase();
             filmService.addMovie(currentUser, titolo, currentUser.getIduser());
 
             /* Chiamo il JsonParser per recuperare il json da imdbapi
@@ -61,7 +63,7 @@ public class HomeController {
             * @poster_url    Locandina del film
             */
             try {
-                String url = "http://imdbapi.org/?title=" + titolo;
+                String url = "http://imdbapi.org/?title=" + URLEncoder.encode(titolo, "UTF-8");
                 JSONObject json = JsonParser.readJsonFromUrl(url);
                 String plot = json.get("plot_simple").toString();
                 String poster_url = json.get("poster").toString();
@@ -73,7 +75,7 @@ public class HomeController {
                 /* Scarico l'immagine e la salvo in locale */
 
                 BufferedImage image = ImageIO.read(img_url);
-                File local_file = new File("C:\\Users\\Lorenzo\\Desktop\\Videoteca\\trunk\\src\\main\\webapp\\resources\\img\\" + titolo + ".jpg");
+                File local_file = new File("C:\\Users\\ldisita\\Desktop\\Videoteca\\trunk\\src\\main\\webapp\\resources\\img\\" + titolo + ".jpg");
                 ImageIO.write(image, "jpg", local_file);
 
                 FileInputStream fileInputStream = new FileInputStream(local_file);
@@ -87,10 +89,7 @@ public class HomeController {
                 }
 
                 byte[] bytes = bos.toByteArray();
-
-//                String titolo_ = titolo.replaceAll("\\s","");
-//                System.out.println("TITOLO DEL CAZZO SENZA SPAZI : " +titolo_);
-                
+   
                 filmService.writeMovieDetails(titolo, bytes, local_file, plot, imdb_url);
             } catch (Exception e) {
                 e.printStackTrace();
