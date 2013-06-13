@@ -51,10 +51,10 @@
 
         <title>LOGIN</title>
     </head>
-    <body>
+    <body class="titolo">
         <!--        <h1>LOGIN FORM</h1>-->
 
-        <div class="container">
+        <div class="titolo">
 
             <form action="Login.htm" method="post" class="form-signin">
 

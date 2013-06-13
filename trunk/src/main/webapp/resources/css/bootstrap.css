@@ -2338,7 +2338,7 @@ table th[class*="span"],
 }
 
 .icon-user {
-  background-position: -168px 0;
+   background-position: -168px 0;
 }
 
 .icon-film {
@@ -6115,7 +6115,7 @@ a.badge:focus {
   font-weight: 200;
   line-height: 30px;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #252525;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
@@ -6124,11 +6124,11 @@ a.badge:focus {
 .titolo {
   padding: 60px;
   margin-bottom: 30px;
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 200;
   line-height: 30px;
   color: inherit;
-  background-color: #aba7ab;
+  background-color: #111111;
   -webkit-border-radius: 6px;
      -moz-border-radius: 6px;
           border-radius: 6px;
