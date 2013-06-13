@@ -57,7 +57,7 @@
 
             <form action="register.htm" method="post" class="form-signin">
 
-                <h2 class="form-signin-heading">Please sign in</h2>
+                <h2 class="form-signin-heading">Submit Credentials</h2>
                 <input type="text" name="username" class="input-block-level" />
                 <input type="password" name="password" class="input-block-level"  />
                 <label class="checkbox">

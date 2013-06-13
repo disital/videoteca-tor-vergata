@@ -1,10 +1,3 @@
-<%-- 
-Document   : myMovie
-Created on : 15-mag-2013, 21.16.43
-Author     : lorenzo
---%>
-
-
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
@@ -22,6 +15,9 @@ Author     : lorenzo
         <link href="./resources/css/bootstrap.css" rel="stylesheet">
         <link href="./resources/css/custom.css" rel="stylesheet">
         <link href="./resources/css/bootstrap-responsive.css" rel="stylesheet">
+        <!--        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.no-icons.min.css" rel="stylesheet">
+                <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">-->
+        <link href="./resources/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <style type="text/css">
             body {
                 padding-top: 60px;
@@ -38,7 +34,7 @@ Author     : lorenzo
                 <link rel="shortcut icon" href="../assets/ico/favicon.png">-->
     </head>
 
-    <body>
+    <body class="titolo">
 
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="navbar-inner">
@@ -48,25 +44,25 @@ Author     : lorenzo
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="brand" href="#">MovieCatalog</a>
+                    <a class="brand" href="index.htm">MovieCatalog</a>
                     <div class="nav-collapse collapse ">
                         <ul class="nav">
-                            <li class="active"><a href="index.htm">Home</a></li>
-                            <li><a href="#about">About</a></li>
-                            <li><a data-toggle="modal" href="#webpageDialog">Contact</a></li>
+                            <li class="active"><a href="index.htm"><i class="icon-home icon-white" ></i> Home</a></li>
+                            <li><a data-toggle="modal" href="#moreInfo"><i class="icon-bookmark icon-white" ></i>About</a></li>
+                            <li><a data-toggle="modal" href="#webpageDialog"><i class="icon-envelope icon-white" ></i> Contact</a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Manage <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-wrench icon-white"></i> Manage <b class="caret"></b></a>
                                 <ul class="dropdown-menu" >
-                                    <li><a data-toggle="modal" href="#addMovieModal">New Movie</a></li>
-                                    <li><a href="myMovie.htm">MyMovies</a></li>
+                                    <li><a data-toggle="modal" href="#addMovieModal"><i class="icon-plus-sign" ></i> New Movie</a></li>
+                                    <li><a href="myMovie.htm"><i class="icon-star-empty" ></i> MyMovies</a></li>
                                     <li class="divider"></li>
                                     <li class="nav-header">AskFor</li>
-                                    <li><a href="#">Ask for Movie</a></li>
-                                    <li><a href="#">Suggest a Movie</a></li>
+                                    <li><a href="#"><i class="icon-bullhorn" ></i> Ask for Movie</a></li>
+                                    <li><a href="#"><i class="icon-thumbs-up" ></i> Suggest a Movie</a></li>
                                 </ul>
                             </li>
-                            <form action="search.htm" class="navbar-search pull-left">
-                                <input type="text" name="word" class="search-query" placeholder="Search">
+                            <form action="search.htm" class="navbar-search pull-left"><i class="icon-search icon-white"></i>
+                                <input type="text" name="word" class="search-query" placeholder="Search" >
                             </form>
                             <li><a></a></li>
                             <li><a></a></li>
@@ -77,14 +73,13 @@ Author     : lorenzo
                             <li><a></a></li>
                             <li><a></a></li>
                             <li><a></a></li>
-                            <li><a></a></li>
                             <li class="dropdown">
-                                <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown"><%= request.getSession().getAttribute("username")%> <b class="caret"></b></a>
+                                <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown"><i class="icon-user icon-white"></i> <%= request.getSession().getAttribute("username")%> <b class="caret"></b></a>
                                 <ul class="dropdown-menu" >
                                     <li class="divider"></li>
                                     <li class="nav-header">Account Settings</li>
-                                    <li><a href="#">Profile</a></li>
-                                    <li><a href="logout.htm">Logout</a></li>
+                                    <li><a href="#"><i class="icon-user icon-white"></i> Profile</a></li>
+                                    <li><a href="logout.htm"><i class="icon-off" ></i> Logout</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -93,74 +88,102 @@ Author     : lorenzo
             </div>
         </div>
 
-        <!-- Creo per ogni film presente un riquadro DIV SPAN4 , visualizzo solo locandina  -->
-        <jsp:useBean id="resultList" scope="session" type="java.util.List"></jsp:useBean>
-            <div class="container hero-unit">
-            <%= request.getAttribute("message")%>
-            <div class="row">
+        <div class="container">
+            <!-- Example row of columns -->
+            <jsp:useBean id="resultList" scope="session" type="java.util.List"></jsp:useBean>
+                <div class=\"row">
+                <%= request.getAttribute("message")%>
                 <c:forEach items="${resultList}" var="result" begin="0" end="10">
-                    <div class="span3">
+                    <c:choose>
+                        <c:when test="${row.count % 3 == 0}">
+                        </div><div class=\"row">
+                        </c:when>
+
+                    </c:choose>
+                    <div class="span4 hero-unit ">
                         <h2><c:out value="${result.titolo}"></c:out></h2>
                         <p><c:out value="${result.trama}"></c:out></p>
-                        <p><img src="./resources/img/${result.titolo}.jpg" alt=""></p>
-                        <p><a class="btn" href="rent/${result.idfilm}.htm">Noleggia &raquo;</a></p>
-                        <p><a class="btn" data-toggle="modal" data-target="#MovieDetailModal" >View details &raquo;</a></p>
-                        </div>
-                </c:forEach>
-            </div>
-        </div>
-
-        <div class="divWebpageDialog">
-            <div id="webpageDialog" class="modal hide fade">
-                <div class="modal-header">
-                    <a href="#" class="close" data-dismiss="modal">&times;</a>
-                    <h3 id="prompt">Presentation preview</h3>
-                </div>
-                <div class="modal-body">
-                    <iframe src="http://localhost/VideotecaPHP/index.php" frameborder="0"></iframe>
-                </div>
-                <div class="modal-footer">
-                    <a href="#" class="btn btn-primary" onclick="okWebpageDialog()">OK</a>
-                </div>
-            </div>
-        </div>
-        <div id="MovieDetailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 id="ModalLabel">Movie Detail</h3>
-            </div>
-            <div class="modal-body container">
-
-                <div class="row">
-
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            </div>
-        </div>
-
-        <div id="addMovieModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
-                <h3 id="ModalLabel">Add Movie</h3>
-            </div>
-            <div class="modal-body container">
-                <form action="addMovie.htm" method="post" styleClass="form-horizontal">
-
-                    <div class="control-group">
-                        <div class="controls">
-                            <input type="text" name="titolo" styleClass="control-label"></html:text>
-                        </div>
+                        <p><img class="img-polaroid" src="./resources/img/${result.titolo}.jpg" alt=""></p>
+                        <p><a class="btn btn-primary btn-small" onclick="avvisaNoleggio()" href="rent/${result.idfilm}.htm">Noleggia &raquo;</a></p>
+                        <p><a class="btn btn-primary btn-large" data-toggle="modal" data-target="#MovieDetailModal" >View details &raquo;</a></p>
                     </div>
+                </c:forEach>
+            </div>  
+        </div>
+        <hr>
+
+        <footer>
+            <p>&copy; disital@gmail.com - 2013</p>
+        </footer>
+
+
+    </div>
+    <!-- /container -->
+    <div class="divWebpageDialog">
+        <div id="webpageDialog" class="modal hide fade">
+            <div class="modal-header">
+                <a href="#" class="close" data-dismiss="modal">&times;</a>
+                <h3 id="prompt">About me</h3>
+            </div>
+            <div class="modal-body">
+                <iframe src="http://localhost/VideotecaPHP/index.php" frameborder="0"></iframe>
             </div>
             <div class="modal-footer">
-                <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-                <input type="submit" value="Add" class="btn btn-primary"></html:submit>
+                <a href="#" class="btn btn-primary" onclick="okWebpageDialog()">OK</a>
             </div>
-        </form>
+        </div>
     </div>
+    <div id="MovieDetailModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3 id="ModalLabel">Movie Detail</h3>
+        </div>
+        <div class="modal-body container">
+
+            <div class="row">
+
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
+    <div id="moreInfo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3 id="ModalLabel">More Info</h3>
+        </div>
+        <div class="modal-body">
+
+            <p>MovieCatalog , a new way of catalog your movies! Keep your library always up to date and invite friends join this community to increase number of review and movie's details.</p>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+        </div>
+    </div>
+
+    <div id="addMovieModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+            <h3 id="ModalLabel">Add Movie</h3>
+        </div>
+        <div class="modal-body container">
+            <form action="addMovie.htm" method="post" styleClass="form-horizontal">
+
+                <div class="control-group">
+                    <div class="controls">
+                        <input type="text" name="titolo" styleClass="control-label"></html:text>
+                    </div>
+                </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <input type="submit" value="Add" class="btn btn-primary">
+        </div>
+    </form>
+</div>
 </body>
 <!-- Le javascript
 ================================================== -->

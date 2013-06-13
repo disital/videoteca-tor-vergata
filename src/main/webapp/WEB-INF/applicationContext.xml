@@ -16,8 +16,7 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
  
-<!--    <context:annotation-config />
-    <context:component-scan base-package="net.viralpatel.contact" />-->
+
     <context:annotation-config />
      <context:component-scan base-package="controller" />
 
