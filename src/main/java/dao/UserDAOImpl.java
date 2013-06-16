@@ -4,6 +4,7 @@
  */
 package dao;
 
+import java.io.File;
 import pojo.Film;
 import pojo.User;
 import java.util.List;
@@ -74,14 +75,13 @@ public class UserDAOImpl implements UserDAO {
         List detail = sessionFactory.getCurrentSession().createQuery("from User as u where u.username =:username")
                 .setParameter("username", username).list();
         User user = (User) detail.get(0);
-//        User currentUser = new User();
-//        currentUser.setIduser(user.getIduser());
-//        currentUser.setUsername(user.getUsername());
-
-//        System.out.println("ID USER : " + user.getIduser());  
-//        System.out.println("USERNAME : " + user.getUsername());  
-//           System.out.println("PASSWORD : " + user.getPassword());  
 
         return user;
+    }
+
+    @Override
+    public void updateAvatar(String pathAvatar,String username) {
+       sessionFactory.getCurrentSession().createSQLQuery("update user SET avatar = '" + pathAvatar  + "' where user.username = '" + username + "'")
+                .executeUpdate();
     }
 }

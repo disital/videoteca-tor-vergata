@@ -18,7 +18,8 @@ function closeDialog() {
 function okWebpageDialog() {
     $("#webpageDialog").modal('hide');
 }
-function avvisaNoleggio(){
-    alert("Stai procedendo al noleggio di questo film. Procedere " + document.getElementById('${movie.titolo}') + " ?");
+function avvisaNoleggio() {
+    alert("Stai procedendo al noleggio di questo film , procedere?");
+    $('#noleggio').addClass(disabled);
 }
 ;

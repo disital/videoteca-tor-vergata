@@ -45,8 +45,8 @@ public class FilmServiceImpl implements FilmService {
     }
 
     @Override
-    public void writeMovieDetails(String titolo, byte[] poster_byte, File local_file, String plot, String imdb_url) {
-        filmDAO.writeMovieDetails(titolo, poster_byte, local_file, plot, imdb_url);
+    public void writeMovieDetails(String titolo,String genere, byte[] poster_byte, File local_file, String plot, String imdb_url) {
+        filmDAO.writeMovieDetails(titolo,genere, poster_byte, local_file, plot, imdb_url);
     }
 
     @Override

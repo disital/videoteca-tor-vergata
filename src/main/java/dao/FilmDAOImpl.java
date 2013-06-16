@@ -63,14 +63,13 @@ public class FilmDAOImpl implements FilmDAO {
     }
 
     @Override
-    public void writeMovieDetails(String titolo, byte[] poster_byte, File local_file, String plot, String imdb_url) {
+    public void writeMovieDetails(String titolo,String genere, byte[] poster_byte, File local_file, String plot, String imdb_url) {
 
         film = new Film();
         film.setImage(poster_byte);
-//        String titolo_ = titolo.replaceAll("\\s","");
-//        System.out.println("TITOLO PRIMA DELLA QUERY : " + titolo);
+
         sessionFactory.getCurrentSession().createSQLQuery("update film SET image = '" + poster_byte + ""
-                + "' , trama = '" + plot.replaceAll("'", "''") + "' , imdb_url = '" + imdb_url + "' where film.titolo = '" + titolo + "'")
+                + "' , trama = '" + plot.replaceAll("'", "''") + "' , genere = '" + genere + "' , imdb_url = '" + imdb_url + "' where film.titolo = '" + titolo + "'")
                 .executeUpdate();
     }
 

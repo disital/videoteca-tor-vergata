@@ -63,11 +63,12 @@ public class HomeController {
             * @poster_url    Locandina del film
             */
             try {
-                String url = "http://imdbapi.org/?title=" + URLEncoder.encode(titolo, "UTF-8");
+                String url = "http://mymovieapi.com/?title=" + URLEncoder.encode(titolo, "UTF-8");
                 JSONObject json = JsonParser.readJsonFromUrl(url);
-                String plot = json.get("plot_simple").toString();
+                String plot = json.get("plot_simple").toString().substring(0, 94);
                 String poster_url = json.get("poster").toString();
                 String imdb_url = json.get("imdb_url").toString();
+                String genere = json.get("genres").toString();
                 URL img_url = new URL(poster_url);
 
                 System.out.println("URL DELL'IMMAGINE :" + img_url);
@@ -90,7 +91,7 @@ public class HomeController {
 
                 byte[] bytes = bos.toByteArray();
    
-                filmService.writeMovieDetails(titolo, bytes, local_file, plot, imdb_url);
+                filmService.writeMovieDetails(titolo,genere, bytes, local_file, plot, imdb_url);
             } catch (Exception e) {
                 e.printStackTrace();
             }

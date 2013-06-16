@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 21-mag-2013 10.57.57 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 14-giu-2013 15.07.49 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="pojo.Film" table="film" catalog="mydb">
         <id name="idfilm" type="java.lang.Integer">
@@ -21,7 +21,7 @@
             <column name="link" length="45" />
         </property>
         <property name="trama" type="string">
-            <column name="trama" length="300" />
+            <column name="trama" length="95" />
         </property>
         <property name="image" type="binary">
             <column name="image" />

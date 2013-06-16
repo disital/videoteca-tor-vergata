@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 21-mag-2013 10.57.57 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 14-giu-2013 15.07.49 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="pojo.User" table="user" catalog="mydb">
         <id name="iduser" type="java.lang.Integer">
@@ -13,6 +13,9 @@
         </property>
         <property name="password" type="string">
             <column name="password" length="45" not-null="true" />
+        </property>
+        <property name="avatar" type="string">
+            <column name="avatar" length="80" />
         </property>
         <set name="films" inverse="true">
             <key>
