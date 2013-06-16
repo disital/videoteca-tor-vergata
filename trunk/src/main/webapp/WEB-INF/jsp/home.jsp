@@ -78,7 +78,7 @@
                                 <ul class="dropdown-menu" >
                                     <li class="divider"></li>
                                     <li class="nav-header">Account Settings</li>
-                                    <li><a href="#"><i class="icon-user"></i> Profile</a></li>
+                                    <li><a href="profile.htm"><i class="icon-user"></i> Profile</a></li>
                                     <li><a href="logout.htm"><i class="icon-off" ></i> Logout</a></li>
                                 </ul>
                             </li>
@@ -139,7 +139,7 @@
                         <h2><c:out value="${movie.titolo}"></c:out></h2>
                         <p><c:out value="${movie.trama}"></c:out></p>
                         <p><img class="img-polaroid" src="./resources/img/${movie.titolo}.jpg" alt=""></p>
-                        <p><a class="btn btn-primary btn-small" onclick="avvisaNoleggio()" href="rent/${movie.idfilm}.htm">Noleggia &raquo;</a></p>
+                        <p><a class="btn btn-primary btn-small" data-loading-text="Loading..." data-toggle="button" href="rent/${movie.idfilm}.htm">Noleggia &raquo;</a></p>
                         <p><a class="btn btn-primary btn-large" data-toggle="modal" data-target="#MovieDetailModal" >View details &raquo;</a></p>
                     </div>
                 </c:forEach>
@@ -214,7 +214,7 @@
                 </div>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn" data-dismiss="modal" data-loading-text="Loading..."aria-hidden="true">Close</button>
             <input type="submit" value="Add" class="btn btn-primary">
         </div>
     </form>

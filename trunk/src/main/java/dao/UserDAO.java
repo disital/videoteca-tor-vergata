@@ -18,6 +18,8 @@ public interface UserDAO {
 
     public void delete(Integer idUser);
 
+    public void updateAvatar(String pathAvatar,String username);
+    
     public User findByUsernamePassword(String username, String pwd);
 
     public int findIDByUsername(String username);
@@ -25,4 +27,5 @@ public interface UserDAO {
     public List<Film> getUserFilm(int id);
     
     public User userDetail(String username);
+    
 }

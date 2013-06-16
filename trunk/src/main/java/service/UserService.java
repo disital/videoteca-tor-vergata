@@ -18,6 +18,8 @@ public interface UserService {
     public void persist(User transientInstance);
 
     public void delete(Integer idUser);
+    
+    public void updateAvatar(String pathAvatar,String username);
 
     public User findByUsernamePassword(String username, String pwd);
 

@@ -25,7 +25,7 @@ public interface FilmService {
 
     public List<Film> getFilmTitles(int startID, int endID);
     
-    public void writeMovieDetails(String titolo, byte[] poster_byte, File local_file, String plot, String imdb_url);
+    public void writeMovieDetails(String titolo,String genere, byte[] poster_byte, File local_file, String plot, String imdb_url);
 
     public List<Film> loadUserFilm(int id_userid);
     

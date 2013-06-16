@@ -53,4 +53,9 @@ public class UserServiceImpl implements UserService {
     public User userDetail(String username) {
         return userDAO.userDetail(username);
     }
+
+    @Override
+    public void updateAvatar(String pathAvatar, String username) {
+        userDAO.updateAvatar(pathAvatar, username);
+    }
 }
