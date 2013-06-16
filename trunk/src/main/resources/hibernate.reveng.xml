@@ -5,4 +5,5 @@
   <table-filter match-name="rented"/>
   <table-filter match-name="film"/>
   <table-filter match-name="user"/>
+  <table-filter match-name="personal"/>
 </hibernate-reverse-engineering>

@@ -1,5 +1,5 @@
 package pojo;
-// Generated 14-giu-2013 15.07.49 by Hibernate Tools 3.2.1.GA
+// Generated 16-giu-2013 19.52.47 by Hibernate Tools 3.2.1.GA
 
 
 import java.util.HashSet;
@@ -30,6 +30,7 @@ public class User  implements java.io.Serializable {
      private String username;
      private String password;
      private String avatar;
+     private Set personals = new HashSet(0);
      private Set films = new HashSet(0);
      private Set renteds = new HashSet(0);
 
@@ -41,10 +42,11 @@ public class User  implements java.io.Serializable {
         this.username = username;
         this.password = password;
     }
-    public User(String username, String password, String avatar, Set films, Set renteds) {
+    public User(String username, String password, String avatar, Set personals, Set films, Set renteds) {
        this.username = username;
        this.password = password;
        this.avatar = avatar;
+       this.personals = personals;
        this.films = films;
        this.renteds = renteds;
     }
@@ -85,6 +87,14 @@ public class User  implements java.io.Serializable {
     
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+@OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
+    public Set getPersonals() {
+        return this.personals;
+    }
+    
+    public void setPersonals(Set personals) {
+        this.personals = personals;
     }
 @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="user")
     public Set getFilms() {
