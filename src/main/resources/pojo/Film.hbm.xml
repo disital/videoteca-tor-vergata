@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<!-- Generated 14-giu-2013 15.07.49 by Hibernate Tools 3.2.1.GA -->
+<!-- Generated 16-giu-2013 19.52.47 by Hibernate Tools 3.2.1.GA -->
 <hibernate-mapping>
     <class name="pojo.Film" table="film" catalog="mydb">
         <id name="idfilm" type="java.lang.Integer">

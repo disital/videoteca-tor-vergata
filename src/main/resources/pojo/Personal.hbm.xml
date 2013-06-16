@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 16-giu-2013 19.52.47 by Hibernate Tools 3.2.1.GA -->
+<hibernate-mapping>
+    <class name="pojo.Personal" table="personal" catalog="mydb">
+        <id name="idpersonal" type="java.lang.Integer">
+            <column name="idpersonal" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="user" class="pojo.User" fetch="select">
+            <column name="user_iduser" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="name" length="45" />
+        </property>
+        <property name="dateOfBirth" type="timestamp">
+            <column name="date_of_birth" length="19" />
+        </property>
+        <property name="street" type="string">
+            <column name="street" length="80" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="45" />
+        </property>
+        <property name="state" type="string">
+            <column name="state" length="45" />
+        </property>
+        <property name="zip" type="string">
+            <column name="zip" length="10" />
+        </property>
+    </class>
+</hibernate-mapping>
